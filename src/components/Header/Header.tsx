@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import './Header.scss';
+import './header.scss';
 
 type animationType = {
     animation: string,
@@ -21,7 +21,7 @@ const Header = ({ animation, setAnimation }: animationType) => {
     }
     return (
         <header className="header">
-            <section className="menu-wrapper">
+            <section className="animations-wrapper">
                 <p onClick={selectAni} className={aniSelected}>Pick animation:</p>
                 <nav className={aniSelected + " menu"}>
                     <li className={animation === "fade-in" ? "activated" : ""} onClick={(e) => setAnimation("fade-in")}>Fade-In</li>
@@ -32,7 +32,6 @@ const Header = ({ animation, setAnimation }: animationType) => {
             <section className="charts-wrapper">
                 <p onClick={selectCharts} className={chartSelected}>Pick chart:</p>
                 <nav className={chartSelected + " menu"}>
-                    <Link to="/">Home</Link>
                     <Link to="/price" >Awardmoney per Year</Link>
                     <Link to="/categoryNumber" >Awards per Category, select year</Link>
                     <Link to="/categoryTotal" >Total awards per Category</Link>
