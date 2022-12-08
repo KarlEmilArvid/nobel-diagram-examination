@@ -1,32 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import Header from './components/Header/Header';
+import CategoryNumber from './views/CategoryNumber/CategoryNumber';
+import CategoryTotal from './views/CategoryTotal/CategoryTotal';
+import Country from './views/Country/Country';
+import Start from './views/Start/Start';
+import Gender from './views/Gender/Gender';
+import Price from './views/Price/Price';
+import TopTen from './views/TopTen/TopTen';
+import './App.scss';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [animation, setAnimation] = useState<string>("fade-in")
 
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <Header animation={animation} setAnimation={setAnimation} />
+      <div className="content-wrapper">
+        <Routes>
+          <Route path="/" element={<Start animation={animation} />} />
+          <Route path="/country" element={<Country animation={animation} />} />
+          <Route path="/price" element={<Price animation={animation} />} />
+          <Route path="/categoryNumber" element={<CategoryNumber animation={animation} />} />
+          <Route path="/categoryTotal" element={<CategoryTotal animation={animation} />} />
+          <Route path="/Gender" element={<Gender animation={animation} />} />
+          <Route path="/topTen" element={<TopTen animation={animation} />} />
+        </Routes>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </div>
   )
 }
