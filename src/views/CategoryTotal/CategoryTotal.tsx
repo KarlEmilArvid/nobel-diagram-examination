@@ -1,14 +1,14 @@
 import anime from 'animejs';
 import 'chart.js/auto';
 import { useEffect } from 'react';
-import { Pie } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 import { categoryData } from '../../data/dataExport';
 
 type animationType = {
     animation: string
 }
 
-const KategoriTotal = ({ animation }: animationType) => {
+const CategoryChart = ({ animation }: animationType) => {
     useEffect(() => {
         if (animation === "fade-in") {
             anime({
@@ -37,11 +37,11 @@ const KategoriTotal = ({ animation }: animationType) => {
     return (
         <main className='wrapper'>
             <h1>Total Awards given per Category</h1>
-            <div className='chart-wrapper circle'>
-                <Pie data={categoryData} />
+            <div className='chart-wrapper'>
+                <Bar data={categoryData} />
             </div>
         </main>
     )
 }
 
-export default KategoriTotal
+export default CategoryChart

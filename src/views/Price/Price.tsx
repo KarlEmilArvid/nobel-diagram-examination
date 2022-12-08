@@ -2,7 +2,7 @@ import anime from 'animejs';
 import 'chart.js/auto';
 import { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
-import { adjustedPriceAvarageData, normalPriceAvarageData } from '../../data/dataExport';
+import { priceAverageData } from '../../data/dataExport';
 import './Price.scss';
 
 type animationType = {
@@ -10,8 +10,7 @@ type animationType = {
 }
 
 const Price = ({ animation }: animationType) => {
-    const [dataToShow, setDataToShow] = useState(normalPriceAvarageData)
-    const [toggleInfl, setToggleInfl] = useState<boolean>(false)
+    const [price, setPrice] = useState(priceAverageData)
 
     useEffect(() => {
         if (animation === "fade-in") {
@@ -39,25 +38,11 @@ const Price = ({ animation }: animationType) => {
 
     }, [])
 
-
-    function toggleInflation() {
-        if (!toggleInfl) {
-            setDataToShow(adjustedPriceAvarageData)
-            setToggleInfl(!toggleInfl)
-        } else {
-            setDataToShow(normalPriceAvarageData)
-            setToggleInfl(!toggleInfl)
-        }
-    }
     return (
         <main className='wrapper'>
-            <h1>AwardMoney per Year</h1>
-            <div className='toggle'>
-                <p>Toggle with inflation:</p>
-                <input onClick={toggleInflation} type="checkbox" id="inflation" />
-            </div>
+            <h1>Money awarded each year</h1>
             <div className='chart-wrapper'>
-                <Line data={dataToShow} />
+                <Line data={price} />
             </div>
         </main>
     )
