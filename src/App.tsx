@@ -6,6 +6,7 @@ import Country from './views/Country/Country'
 import Start from './views/Start/Start'
 import Gender from './views/Gender/Gender'
 import Price from './views/Price/Price'
+import TopTen from './views/TopTen/TopTen'
 import './App.scss'
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/Gender" element={<Gender animation={animation} />} />
           <Route path="/Country" element={<Country animation={animation} />} />
           <Route path="/Price" element={<Price animation={animation} />} />
+          <Route path="/TopTen" element={<TopTen animation={animation} />} />
         </Routes>
       </div>
     </div>

@@ -1,6 +1,57 @@
-import { countryType, priceType } from '../types/types'
+import { countryType, winnerType } from '../types/types'
 import awards from './json_award.json'
 import laureates from './json_laureates.json'
+
+/* Top winners data */
+const winnerData: winnerType[] = laureates.map((winner) => ({
+    name: winner.knownName != undefined ? winner.knownName.en : winner.orgName.en,
+    wins: winner.nobelPrizes.length,
+}))
+
+winnerData.sort((a, b) => (a.wins < b.wins ? 1 : b.wins ? -1 : 0))
+
+const winnersArray = []
+const namesArray = []
+
+for (let i = 0; i < winnerData.length; i++) {
+    if (winnersArray.length < 10) {
+        winnersArray.push(winnerData[i].wins)
+        namesArray.push(winnerData[i].name)
+    }
+}
+
+const totalWins = laureates.map((laureate) => laureate.nobelPrizes)
+const totalWinners: string[] = []
+
+totalWins.forEach((winner) => {
+    winner.forEach((win: { category: { en: string } }) => {
+        totalWinners.push(win.category.en)
+    })
+})
+
+totalWinners.sort()
+
+const Top10Data = {
+    labels: namesArray,
+    datasets: [
+        {
+            label: "Top 10 most awarded",
+            data: winnersArray,
+            backgroundColor: [
+                '#3C5C06',
+                '#ADE153',
+                '#91DB0F',
+                '#475C22',
+                '#6FA80C',
+                '#A84900',
+                '#5C371C',
+                '#DB5F00',
+                '#E18844',
+                '#5C2800'
+            ],
+        }
+    ]
+}
 
 /* Gender data */
 const GenderData = {
@@ -16,29 +67,42 @@ const GenderData = {
 }
 
 /* Prize money data */
-const PriceData = {
-    labels: priceAverage().map(e => e.year),
-    datasets: [{
-        label: 'SEK',
-        data: priceAverage().map(e => e.price),
-        backgroundColor: [
-            '#21A199'
-        ]
-    }]
+const prizeAmount = awards.map(({ awardYear, prizeAmount }) => ({
+    x: awardYear,
+    y: prizeAmount,
+}))
+
+const PrizeData = {
+    datasets: [
+        {
+            label: "Prize amount",
+            data: prizeAmount,
+            backgroundColor: [
+                '#21A199'
+            ],
+            hoverOffset: 4,
+        },
+    ],
 }
 
-function priceAverage() {
-    let allPrices: priceType[] = awards.map((data) => {
-        return { year: data.awardYear, price: data.prizeAmount }
+const prizeAmountAdjusted = awards.map(
+    ({ awardYear, prizeAmountAdjusted }) => ({
+        x: awardYear,
+        y: prizeAmountAdjusted,
     })
-    const uniqueArray = allPrices.filter((value, index) => {
-        const _value: any = JSON.stringify(value)
-        return index === allPrices.findIndex(obj => {
-            return JSON.stringify(obj) === _value
-        })
-    })
+)
 
-    return uniqueArray
+const PrizeDataAdjusted = {
+    datasets: [
+        {
+            label: "Prize amount adjusted with inflation",
+            data: prizeAmountAdjusted,
+            backgroundColor: [
+                '#21A199'
+            ],
+            hoverOffset: 4,
+        },
+    ],
 }
 
 /* Awards per category data */
@@ -129,4 +193,4 @@ function countPerCountry(array: countryType[], countryName: countryType) {
     return { times: count, country: countryName.country }
 }
 
-export { GenderData, PriceData, CategoryData, CountryData }
+export { GenderData, CategoryData, CountryData, PrizeData, PrizeDataAdjusted, Top10Data }

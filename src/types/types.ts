@@ -2,9 +2,9 @@ export type animationType = {
     animation: string
 }
 
-export type priceType = {
-    year: string,
-    price: number
+export type winnerType = {
+    name: string;
+    wins: number;
 }
 
 export type countryType = {

@@ -1,14 +1,10 @@
-#root {
-  margin: 0 auto;
-  list-style-type: none;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
-
 * {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   box-sizing: border-box;
   margin: 0;
   background-color: rgb(245, 245, 245);
   overflow: hidden;
+  text-align: center;
 }
 
 main {

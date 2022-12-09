@@ -1,14 +1,11 @@
-import { useEffect, useState } from 'react'
-import { Line } from 'react-chartjs-2'
-import { PrizeData, PrizeDataAdjusted } from '../../data/data'
+import { useEffect } from 'react'
+import { Bar } from 'react-chartjs-2'
+import { Top10Data } from '../../data/data'
 import { animationType } from '../../types/types'
 import anime from 'animejs'
 import 'chart.js/auto'
-import './price.scss'
 
-const Price = ({ animation }: animationType) => {
-    const [data, setData] = useState(PrizeData)
-    const [toggle, setToggle] = useState<boolean>(false)
+const TopTen = ({ animation }: animationType) => {
 
     useEffect(() => {
         if (animation === "slide") {
@@ -40,28 +37,14 @@ const Price = ({ animation }: animationType) => {
         }
     }, [])
 
-    function toggleInflation() {
-        if (!toggle) {
-            setData(PrizeDataAdjusted)
-            setToggle(!toggle)
-        } else {
-            setData(PrizeData)
-            setToggle(!toggle)
-        }
-    }
-
     return (
         <main className='selected-animation'>
-            <h2>Money awarded each year</h2>
-            <div className='toggleInflation'>
-                <p>Toggle inflation: </p>
-                <input onClick={toggleInflation} type="checkbox"></input>
-            </div>
+            <h2>Top 10 most awarded winners</h2>
             <div className='chart-wrapper'>
-                <Line data={data} />
+                <Bar data={Top10Data} />
             </div>
         </main>
     )
 }
 
-export default Price
+export default TopTen
