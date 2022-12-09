@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import './header.scss';
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import './header.scss'
 
 type animationType = {
     animation: string,
@@ -21,7 +21,7 @@ const Header = ({ animation, setAnimation }: animationType) => {
                 <nav className="menu">
                     <li className={animation === "slide" ? "active-animation" : ""} onClick={() => setAnimation("slide")}>Slide</li>
                     <li className={animation === "fade" ? "active-animation" : ""} onClick={() => setAnimation("fade")}>Fade</li>
-                    <li className={animation === "rolldown" ? "active-animation" : ""} onClick={() => setAnimation("rolldown")}>Roll Down</li>
+                    <li className={animation === "spin" ? "active-animation" : ""} onClick={() => setAnimation("spin")}>Spin</li>
                 </nav>
             </section>
             <section className="charts-wrapper">

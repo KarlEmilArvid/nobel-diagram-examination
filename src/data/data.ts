@@ -1,6 +1,6 @@
-import { countryType, priceType } from '../types/types';
-import awards from './json_award.json';
-import laureates from './json_laureates.json';
+import { countryType, priceType } from '../types/types'
+import awards from './json_award.json'
+import laureates from './json_laureates.json'
 
 /* Gender data */
 const GenderData = {
@@ -16,7 +16,7 @@ const GenderData = {
 }
 
 /* Prize money data */
-const priceData = {
+const PriceData = {
     labels: priceAverage().map(e => e.year),
     datasets: [{
         label: 'SEK',
@@ -32,7 +32,7 @@ function priceAverage() {
         return { year: data.awardYear, price: data.prizeAmount }
     })
     const uniqueArray = allPrices.filter((value, index) => {
-        const _value = JSON.stringify(value);
+        const _value: any = JSON.stringify(value)
         return index === allPrices.findIndex(obj => {
             return JSON.stringify(obj) === _value
         })
@@ -42,11 +42,11 @@ function priceAverage() {
 }
 
 /* Awards per category data */
-const categoryArray: string[] = awards.map((award: { category: { en: string; }; }) => award.category.en);
-const categoryCount: any = {};
+const categoryArray: string[] = awards.map((award: { category: { en: string } }) => award.category.en)
+const categoryCount: any = {}
 
 for (const category of categoryArray) {
-    categoryCount[category] = categoryCount[category] ? categoryCount[category] + 1 : 1;
+    categoryCount[category] = categoryCount[category] ? categoryCount[category] + 1 : 1
 }
 
 const categoriesData = [
@@ -58,7 +58,7 @@ const categoriesData = [
     { category: 'Physics', count: categoryCount['Physics'] }
 ].map(({ category, count }) => ({ x: category, y: count }))
 
-const categoryData = {
+const CategoryData = {
     datasets: [{
         label: 'Amount of awards',
         data: categoriesData,
@@ -73,18 +73,17 @@ const categoryData = {
     }]
 }
 
-/* --------------------------------- Country Data */
-
+/* Country Data */
 const CountryData = {
-    labels: sumCountryWinners().map(e => e.country),
+    labels: totalCountryWins().map(e => e.country),
     datasets: [{
         label: 'Awards',
-        data: sumCountryWinners().map(e => e.times),
+        data: totalCountryWins().map(e => e.times),
         backgroundColor: ['#5164D6'],
     }]
 }
 
-function sumCountryWinners() {
+function totalCountryWins() {
     let countryWins: countryType[] = laureates.map((data) => {
         if (!data.birth) {
             return { country: "corrupt data", times: 0 }
@@ -92,24 +91,24 @@ function sumCountryWinners() {
         return { country: data.birth.place.country.en, times: 0 }
     })
 
-    let timesWon: countryType[] = countryWins.map((data) => {
-        return countInArrayCountry(countryWins, data)
+    let amountWon: countryType[] = countryWins.map((data) => {
+        return countPerCountry(countryWins, data)
     })
 
-    const uniqueArray: countryType[] = timesWon.filter((value, index) => {
-        const _value = JSON.stringify(value);
-        return index === timesWon.findIndex(obj => {
+    const uniqueArray: countryType[] = amountWon.filter((value, index) => {
+        const _value: any = JSON.stringify(value)
+        return index === amountWon.findIndex(obj => {
             return JSON.stringify(obj) === _value
         })
     })
 
-    const overOne: countryType[] = uniqueArray.filter((data) => data.times > 1)
-    let sortedArray: countryType[] = overOne.sort((obj1: countryType, obj2: countryType) => {
-        if (obj1.times > obj2.times) {
+    const overOneWin: countryType[] = uniqueArray.filter((data) => data.times > 1)
+    let sortedArray: countryType[] = overOneWin.sort((countryOne: countryType, countryTwo: countryType) => {
+        if (countryOne.times > countryTwo.times) {
             return 1
         }
 
-        if (obj1.times < obj2.times) {
+        if (countryOne.times < countryTwo.times) {
             return -1
         }
 
@@ -119,15 +118,15 @@ function sumCountryWinners() {
     return sortedArray
 }
 
-function countInArrayCountry(array: countryType[], what: countryType) {
+function countPerCountry(array: countryType[], countryName: countryType) {
     let count = 0
     for (let i = 0; i < array.length; i++) {
-        if (array[i].country === what.country) {
+        if (array[i].country === countryName.country) {
             count++
         }
     }
 
-    return { times: count, country: what.country }
+    return { times: count, country: countryName.country }
 }
 
-export { GenderData, priceData, CountryData, categoryData }
+export { GenderData, PriceData, CategoryData, CountryData }

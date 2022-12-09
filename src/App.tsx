@@ -1,15 +1,15 @@
-import { useState } from "react";
-import { Route, Routes } from "react-router-dom";
-import Header from './components/Header/Header';
-import Category from './views/Category/Category';
-import Country from './views/Country/Country';
-import Start from './views/Start/Start';
-import Gender from './views/Gender/Gender';
-import Price from './views/Price/Price';
-import './App.scss';
+import { useState } from "react"
+import { Route, Routes } from "react-router-dom"
+import Header from './components/Header/Header'
+import Category from './views/Category/Category'
+import Country from './views/Country/Country'
+import Start from './views/Start/Start'
+import Gender from './views/Gender/Gender'
+import Price from './views/Price/Price'
+import './App.scss'
 
 function App() {
-  const [animation, setAnimation] = useState<string>("")
+  const [animation, setAnimation] = useState<string>('')
 
   return (
     <div className="App">
@@ -17,10 +17,10 @@ function App() {
       <div>
         <Routes>
           <Route path="/" element={<Start />} />
-          <Route path="/Price" element={<Price animation={animation} />} />
+          <Route path="/Category" element={<Category animation={animation} />} />
           <Route path="/Gender" element={<Gender animation={animation} />} />
           <Route path="/Country" element={<Country animation={animation} />} />
-          <Route path="/Category" element={<Category animation={animation} />} />
+          <Route path="/Price" element={<Price animation={animation} />} />
         </Routes>
       </div>
     </div>

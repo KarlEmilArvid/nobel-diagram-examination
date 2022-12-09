@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
-import { Bar } from 'react-chartjs-2';
-import { categoryData } from '../../data/data';
-import { animationType } from '../../types/types';
-import anime from 'animejs';
-import 'chart.js/auto';
+import { useEffect } from 'react'
+import { Bar } from 'react-chartjs-2'
+import { CategoryData } from '../../data/data'
+import { animationType } from '../../types/types'
+import anime from 'animejs'
+import 'chart.js/auto'
 
 const Category = ({ animation }: animationType) => {
 
@@ -22,11 +22,16 @@ const Category = ({ animation }: animationType) => {
                 opacity: [0, 1],
                 easing: "easeInOutQuad"
             })
-        } else if (animation === "rolldown") {
+        } else if (animation === "spin") {
             anime({
-                targets: '.selected-animation',
-                duration: 1000,
-                translateY: ["100deg", 0],
+                targets: '.chart-wrapper',
+                rotate: {
+                    value: 360,
+                    duration: 1000,
+                    easing: 'easeInOutSine'
+                },
+                translateY: ["100%", 0],
+                opacity: [0, 1],
                 easing: "easeInOutQuad"
             })
         }
@@ -34,9 +39,9 @@ const Category = ({ animation }: animationType) => {
 
     return (
         <main className='selected-animation'>
-            <h1>Total awards given per category</h1>
+            <h2>Total awards given per category</h2>
             <div className='chart-wrapper'>
-                <Bar data={categoryData} />
+                <Bar data={CategoryData} />
             </div>
         </main>
     )
