@@ -1,48 +1,42 @@
+import { useEffect } from 'react';
+import { Line } from 'react-chartjs-2';
+import { priceData } from '../../data/dataExport';
+import { animationType } from '../../types/types';
 import anime from 'animejs';
 import 'chart.js/auto';
-import { useEffect, useState } from 'react';
-import { Line } from 'react-chartjs-2';
-import { priceAverageData } from '../../data/dataExport';
-import './Price.scss';
-
-type animationType = {
-    animation: string
-}
 
 const Price = ({ animation }: animationType) => {
-    const [price, setPrice] = useState(priceAverageData)
 
     useEffect(() => {
-        if (animation === "fade-in") {
+        if (animation === "slide") {
             anime({
-                targets: '.wrapper',
-                duration: 1000,
-                opacity: [0, 1],
+                targets: '.selected-animation',
+                duration: 1200,
+                translateX: ["100%", 0],
                 easing: "easeInOutQuad"
             })
-        } else if (animation === "slide-in") {
+        } else if (animation === "fade") {
             anime({
-                targets: '.wrapper',
-                duration: 1000,
-                translateX: ["100%", 0],
+                targets: '.selected-animation',
+                duration: 1500,
+                opacity: [0, 1],
                 easing: "easeInOutQuad"
             })
         } else if (animation === "rolldown") {
             anime({
-                targets: '.wrapper',
+                targets: '.selected-animation',
                 duration: 1000,
                 translateY: ["100deg", 0],
                 easing: "easeInOutQuad"
             })
         }
-
     }, [])
 
     return (
-        <main className='wrapper'>
+        <main className='selected-animation'>
             <h1>Money awarded each year</h1>
             <div className='chart-wrapper'>
-                <Line data={price} />
+                <Line data={priceData} />
             </div>
         </main>
     )

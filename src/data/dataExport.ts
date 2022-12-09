@@ -1,4 +1,4 @@
-import { countryType, extractedPriceType, nobelPriceCateType } from '../types/types';
+import { countryType, extractedPriceType } from '../types/types';
 import awards from './json_award.json';
 import laureates from './json_laureates.json';
 
@@ -16,7 +16,7 @@ const GenderData = {
 }
 
 /* Prize money data */
-const priceAverageData = {
+const priceData = {
     labels: priceAverage().map(e => e.year),
     datasets: [{
         label: 'SEK',
@@ -28,7 +28,9 @@ const priceAverageData = {
 }
 
 function priceAverage() {
-    let allPrices: extractedPriceType[] = awards.map((data) => { return { year: data.awardYear, price: data.prizeAmount, adjustedPrice: data.prizeAmountAdjusted } })
+    let allPrices: extractedPriceType[] = awards.map((data) => {
+        return { year: data.awardYear, price: data.prizeAmount }
+    })
     const uniqueArray = allPrices.filter((value, index) => {
         const _value = JSON.stringify(value);
         return index === allPrices.findIndex(obj => {
@@ -40,10 +42,10 @@ function priceAverage() {
 }
 
 /* Awards per category data */
-const categoriesArr: string[] = awards.map((award: { category: { en: string; }; }) => award.category.en);
+const categoryArray: string[] = awards.map((award: { category: { en: string; }; }) => award.category.en);
 const categoryCount: any = {};
 
-for (const category of categoriesArr) {
+for (const category of categoryArray) {
     categoryCount[category] = categoryCount[category] ? categoryCount[category] + 1 : 1;
 }
 
@@ -128,4 +130,4 @@ function countInArrayCountry(array: countryType[], what: countryType) {
     return { times: count, country: what.country }
 }
 
-export { GenderData, priceAverageData, CountryData, categoryData }
+export { GenderData, priceData, CountryData, categoryData }
