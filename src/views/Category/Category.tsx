@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
-import { categoryData } from '../../data/dataExport';
+import { categoryData } from '../../data/data';
 import { animationType } from '../../types/types';
 import anime from 'animejs';
 import 'chart.js/auto';
@@ -34,7 +34,7 @@ const Category = ({ animation }: animationType) => {
 
     return (
         <main className='selected-animation'>
-            <h1>Total Awards given per Category</h1>
+            <h1>Total awards given per category</h1>
             <div className='chart-wrapper'>
                 <Bar data={categoryData} />
             </div>

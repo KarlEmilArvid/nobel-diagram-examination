@@ -1,4 +1,4 @@
-import { countryType, extractedPriceType } from '../types/types';
+import { countryType, priceType } from '../types/types';
 import awards from './json_award.json';
 import laureates from './json_laureates.json';
 
@@ -28,7 +28,7 @@ const priceData = {
 }
 
 function priceAverage() {
-    let allPrices: extractedPriceType[] = awards.map((data) => {
+    let allPrices: priceType[] = awards.map((data) => {
         return { year: data.awardYear, price: data.prizeAmount }
     })
     const uniqueArray = allPrices.filter((value, index) => {

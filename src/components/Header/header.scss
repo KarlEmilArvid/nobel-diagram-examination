@@ -40,11 +40,11 @@
         }
     }
 
-    .activated {
+    .active-animation {
         position: relative;
         display: flex;
         align-items: center;
-        border: 3px solid red !important;
+        border: 3px solid rgb(210, 60, 60) !important;
     }
 }
 

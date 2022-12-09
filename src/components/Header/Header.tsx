@@ -18,19 +18,19 @@ const Header = ({ animation, setAnimation }: animationType) => {
         <header className="header">
             <section className="animations-wrapper">
                 <p onClick={selectAnimation}>Pick animation:</p>
-                <nav className={animationSelected + " menu"}>
-                    <li className={animation === "slide" ? "activated" : ""} onClick={(e) => setAnimation("slide")}>Slide</li>
-                    <li className={animation === "fade" ? "activated" : ""} onClick={(e) => setAnimation("fade")}>Fade</li>
-                    <li className={animation === "rolldown" ? "activated" : ""} onClick={(e) => setAnimation("rolldown")}>Roll Down</li>
+                <nav className="menu">
+                    <li className={animation === "slide" ? "active-animation" : ""} onClick={() => setAnimation("slide")}>Slide</li>
+                    <li className={animation === "fade" ? "active-animation" : ""} onClick={() => setAnimation("fade")}>Fade</li>
+                    <li className={animation === "rolldown" ? "active-animation" : ""} onClick={() => setAnimation("rolldown")}>Roll Down</li>
                 </nav>
             </section>
             <section className="charts-wrapper">
                 <p>Pick chart:</p>
                 <nav className="menu">
-                    <Link to="/Category" >Total awards per Category</Link>
+                    <Link to="/Category" >Total awards per category</Link>
                     <Link to="/Gender" >Total awards per gender</Link>
-                    <Link to="/Country" >Amount of winners per Country</Link>
-                    <Link to="/Price" >Money awarded per Year</Link>
+                    <Link to="/Country" >Amount of winners per country</Link>
+                    <Link to="/Price" >Money awarded per year</Link>
                 </nav>
             </section>
         </header>

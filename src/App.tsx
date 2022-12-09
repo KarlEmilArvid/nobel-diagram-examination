@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Header from './components/Header/Header';
-import Category from './views/CategoryTotal/CategoryTotal';
+import Category from './views/Category/Category';
 import Country from './views/Country/Country';
 import Start from './views/Start/Start';
 import Gender from './views/Gender/Gender';
@@ -9,7 +9,7 @@ import Price from './views/Price/Price';
 import './App.scss';
 
 function App() {
-  const [animation, setAnimation] = useState<string>("fade")
+  const [animation, setAnimation] = useState<string>("")
 
   return (
     <div className="App">

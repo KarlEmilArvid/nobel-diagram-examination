@@ -2,7 +2,7 @@ export type animationType = {
     animation: string
 }
 
-export type extractedPriceType = {
+export type priceType = {
     year: string,
     price: number
 }

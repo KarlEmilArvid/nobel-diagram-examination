@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Pie } from 'react-chartjs-2';
-import { GenderData } from '../../data/dataExport';
+import { GenderData } from '../../data/data';
 import { animationType } from '../../types/types';
 import anime from 'animejs';
 import 'chart.js/auto';
@@ -34,7 +34,7 @@ const Gender = ({ animation }: animationType) => {
 
     return (
         <main className='selected-animation'>
-            <h1>The Total Awards given between Men and Women</h1>
+            <h1>Total awards given between men and women</h1>
             <div className='chart-wrapper'>
                 <Pie data={GenderData} />
             </div>

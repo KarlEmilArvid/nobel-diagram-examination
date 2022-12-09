@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
-import { CountryData } from '../../data/dataExport';
+import { CountryData } from '../../data/data';
 import { animationType } from '../../types/types';
 import anime from 'animejs';
 import 'chart.js/auto';
@@ -34,7 +34,7 @@ const Country = ({ animation }: animationType) => {
 
     return (
         <main className='selected-animation'>
-            <h1>The most Wins per country</h1>
+            <h1>The amount of awards per country</h1>
             <div className='chart-wrapper'>
                 <Bar data={CountryData} />
             </div>

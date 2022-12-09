@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
-import { priceData } from '../../data/dataExport';
+import { priceData } from '../../data/data';
 import { animationType } from '../../types/types';
 import anime from 'animejs';
 import 'chart.js/auto';
